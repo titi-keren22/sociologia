@@ -2,277 +2,411 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#f3ad61">
     <title>Procesos de Interconexión Global. Interconexión digital y soberanía digital de los Estados</title>
     <style>
         :root {
-            --bg-color: #fcfcfc;
-            --card-bg: #ffffff;
-            --text-color: #2c3e50;
-            --text-muted: #7f8c8d;
-            --accent-color: #f3ad61; /* Naranja pastel de tu imagen */
-            --accent-hover: #e09647;
-            --border-color: #e2e8f0;
+            --bg: #fff9f1;
+            --card: #ffffff;
+            --text: #2c3e50;
+            --muted: #6f7c85;
+            --accent: #f3ad61;          /* naranja pastel original */
+            --accent-soft: #fff1de;
+            --accent-line: #fbdcb6;
+            --accent-deep: #c96f1b;     /* para texto y botones activos (buen contraste) */
+            --border: #ecdfce;
+            --radius: 18px;
+            --shadow: 0 1px 2px rgba(120, 70, 10, .05), 0 8px 24px rgba(120, 70, 10, .07);
 
             /* Colores de los crípticos */
-            --c-def: #3b82f6;
-            --c-ind: #10b981;
-            --c-rel: #a855f7;
+            --c-def: #2f6fe4;
+            --c-ind: #0d9467;
+            --c-rel: #9333ea;
+
+            --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+            --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: var(--sans);
+            color: var(--text);
+            line-height: 1.65;
+            background:
+                radial-gradient(900px 380px at 100% -10%, rgba(243,173,97,.20), transparent 60%),
+                radial-gradient(700px 320px at -10% 8%, rgba(243,173,97,.14), transparent 60%),
+                var(--bg);
+            background-attachment: fixed;
             min-height: 100vh;
+            min-height: 100dvh;
+            padding-bottom: env(safe-area-inset-bottom);
+            overflow-x: hidden;
         }
 
+        .wrap {
+            width: 100%;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 clamp(14px, 4vw, 24px);
+        }
+
+        /* ===== Encabezado ===== */
         header {
+            padding: clamp(26px, 6vw, 48px) 0 clamp(14px, 3vw, 22px);
             text-align: center;
-            margin-bottom: 25px;
-            max-width: 750px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-line);
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 14px;
         }
 
         header h1 {
-            font-size: 1.4rem;
-            color: var(--text-color);
-            line-height: 1.4;
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: clamp(1.35rem, 5.2vw, 2.05rem);
+            line-height: 1.25;
+            letter-spacing: -.01em;
+            text-wrap: balance;
+        }
+
+        header h1::after {
+            content: "";
+            display: block;
+            width: 64px;
+            height: 5px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--accent), #f7c78f);
+            margin: 16px auto 0;
+        }
+
+        /* ===== Menú ===== */
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            padding: 10px 0;
+            background: linear-gradient(to bottom, rgba(255,249,241,.96) 70%, rgba(255,249,241,0));
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }
 
         .nav-container {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
+            gap: 8px;
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            scrollbar-width: none;
+            padding: 4px 2px 6px;
             justify-content: center;
         }
+        .nav-container::-webkit-scrollbar { display: none; }
 
         .nav-btn {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 10px 18px;
-            border-radius: 8px;
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            font: 600 .9rem var(--sans);
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(120,70,10,.05);
+            transition: transform .15s ease, background-color .2s, color .2s, border-color .2s, box-shadow .2s;
         }
 
-        .nav-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-hover);
-        }
+        .nav-btn:hover { border-color: var(--accent); color: var(--accent-deep); }
+        .nav-btn:active { transform: scale(.97); }
 
         .nav-btn.active {
-            background-color: var(--accent-color);
-            color: #ffffff;
-            border-color: var(--accent-color);
-            font-weight: 600;
+            background: linear-gradient(135deg, #e5913d, var(--accent-deep));
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(201,111,27,.35);
         }
 
-        .slide-container {
-            max-width: 750px;
-            width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            margin-bottom: 30px;
+        /* En celulares el menú se desliza con el dedo; se ve un borde para avisar */
+        @media (max-width: 600px) {
+            .nav-container { justify-content: flex-start; margin: 0 calc(-1 * clamp(14px, 4vw, 24px)); padding-left: clamp(14px, 4vw, 24px); padding-right: clamp(14px, 4vw, 24px); }
+        }
+
+        /* ===== Paneles ===== */
+        main { padding-top: 8px; }
+
+        .panel {
             display: none;
-            border-top: 5px solid var(--accent-color);
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: clamp(22px, 5vw, 42px);
+            position: relative;
+            overflow: hidden;
         }
 
-        .slide-container.active {
-            display: block;
+        .panel::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent), #f9d3a5);
+        }
+
+        .panel.active { display: block; animation: rise .35s ease both; }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: none; }
+        }
+
+        .slide-num {
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 10vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--accent);
+            opacity: .85;
+            margin-bottom: 6px;
         }
 
         .slide-title {
-            font-size: 1.3rem;
-            color: #d9822b; /* Tono un poco más oscuro para que se lea perfecto sobre blanco */
-            margin-bottom: 20px;
-            font-weight: 600;
+            font-family: var(--serif);
+            font-size: clamp(1.3rem, 4.8vw, 1.75rem);
+            line-height: 1.25;
+            color: var(--accent-deep);
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-wrap: balance;
         }
 
         .slide-text-box {
-            font-size: 1.05rem;
-            color: var(--text-color);
-            line-height: 1.7;
-            text-align: justify;
+            font-size: clamp(1.02rem, 3.6vw, 1.14rem);
+            line-height: 1.75;
+            hyphens: auto;
+            -webkit-hyphens: auto;
         }
 
-        /* Crucigrama */
-        .crossword-container {
-            max-width: 750px;
-            width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            display: none;
-            margin-bottom: 40px;
-            border-top: 5px solid var(--accent-color);
+        .slide-text-box::first-letter {
+            font-family: var(--serif);
+            font-size: 2.4em;
+            float: left;
+            line-height: .9;
+            padding: 6px 8px 0 0;
+            color: var(--accent-deep);
+            font-weight: 700;
         }
 
-        .crossword-container.active {
-            display: block;
+        /* ===== Crucigrama / Crípticos (títulos) ===== */
+        .panel h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.45rem, 5.4vw, 1.9rem);
+            color: var(--accent-deep);
+            margin-bottom: 8px;
+            line-height: 1.2;
         }
 
-        .crossword-container h2 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #d9822b;
+        .intro {
+            color: var(--muted);
+            font-size: .98rem;
+            margin-bottom: 22px;
         }
 
-        .crossword-container p.intro {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-        }
-
+        /* ===== Tarjetas de pistas ===== */
         .clue-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            background-color: #fafbfc;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 14px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: #fffdf9;
+            transition: border-color .2s, background-color .2s, box-shadow .2s;
         }
+
+        .clue-card:hover { border-color: var(--accent-line); box-shadow: 0 4px 14px rgba(120,70,10,.06); }
+
+        .clue-badge {
+            grid-row: 1 / span 3;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-line);
+            color: var(--accent-deep);
+            font: 700 .95rem var(--serif);
+        }
+
+        .clue-body { min-width: 0; }
 
         .clue-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: #d9822b;
-            margin-bottom: 5px;
+            font-weight: 700;
+            font-size: .78rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+            margin-bottom: 2px;
         }
 
-        .clue-desc {
-            font-size: 0.95rem;
-            color: var(--text-color);
-            margin-bottom: 12px;
-        }
-
-        .clue-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
+        .clue-desc { font-size: 1rem; margin-bottom: 10px; }
 
         .hint-btn {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 5px 12px;
-            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 38px;
+            padding: 0 14px;
+            border-radius: 999px;
+            border: 1px solid var(--accent-line);
+            background: var(--accent-soft);
+            color: var(--accent-deep);
+            font: 600 .84rem var(--sans);
             cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.2s;
+            transition: background-color .2s, transform .15s;
         }
 
-        .hint-btn:hover {
-            color: var(--text-color);
-            border-color: var(--accent-color);
-            background-color: #fffaf0;
+        .hint-btn::after {
+            content: "";
+            width: 7px; height: 7px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg) translateY(-2px);
+            transition: transform .2s;
         }
+
+        .hint-btn[aria-expanded="true"]::after { transform: rotate(225deg) translate(-1px, -1px); }
+        .hint-btn:hover { background: #ffe8c9; }
+        .hint-btn:active { transform: scale(.97); }
 
         .hint-text {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-style: italic;
             display: none;
-            margin-top: 8px;
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-left: 4px solid var(--accent);
+            background: var(--accent-soft);
+            border-radius: 0 10px 10px 0;
+            font-size: .93rem;
+            font-style: italic;
+            color: #5b4a38;
+            animation: rise .25s ease both;
         }
+
+        .hint-text.open { display: block; }
 
         /* ===== Crípticos ===== */
         .cryptic-invite {
-            font-size: 1.05rem;
-            margin-bottom: 25px;
+            font-size: 1.08rem;
+            margin-bottom: 20px;
         }
 
         .cryptic-explain {
-            background-color: #fffaf0;
-            border: 1px solid #fbe3c2;
-            border-radius: 8px;
-            padding: 20px 22px;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
+            background: linear-gradient(180deg, #fff6e8, #fffaf2);
+            border: 1px solid var(--accent-line);
+            border-radius: 16px;
+            padding: clamp(16px, 4vw, 24px);
+            margin-bottom: 24px;
+            font-size: .97rem;
             line-height: 1.7;
         }
 
         .cryptic-explain h3 {
-            font-size: 1.05rem;
-            color: #d9822b;
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            color: var(--accent-deep);
             margin-bottom: 10px;
         }
 
-        .cryptic-explain p {
-            margin-bottom: 12px;
-        }
+        .cryptic-explain p { margin-bottom: 12px; }
 
-        .cryptic-explain ul {
-            list-style: none;
-            margin: 12px 0;
-        }
+        .cryptic-explain ul { list-style: none; margin: 14px 0; display: grid; gap: 10px; }
 
         .cryptic-explain li {
-            margin-bottom: 10px;
-            padding-left: 0;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 14px;
         }
 
         .tag {
             display: inline-block;
-            padding: 1px 10px;
-            border-radius: 12px;
+            padding: 2px 11px;
+            margin-bottom: 4px;
+            border-radius: 999px;
             color: #fff;
-            font-weight: 600;
-            font-size: 0.85rem;
+            font-weight: 700;
+            font-size: .82rem;
         }
-
-        .tag.def { background-color: var(--c-def); }
-        .tag.ind { background-color: var(--c-ind); }
-        .tag.rel { background-color: var(--c-rel); }
+        .tag.def { background: var(--c-def); }
+        .tag.ind { background: var(--c-ind); }
+        .tag.rel { background: var(--c-rel); }
 
         .cryptic-example {
-            background-color: #fff;
-            border: 1px dashed var(--border-color);
-            border-radius: 6px;
-            padding: 12px 14px;
+            background: #fff;
+            border: 1.5px dashed var(--accent-line);
+            border-radius: 12px;
+            padding: 14px;
             margin-top: 10px;
         }
 
         .cryptic-phrase {
-            font-size: 1.05rem;
-            line-height: 1.9;
+            font-size: 1.1rem;
+            line-height: 2.1;
             margin-bottom: 12px;
         }
 
-        /* Partes marcadas de la frase */
         .seg {
-            border-radius: 4px;
-            padding: 1px 3px;
-            transition: background-color 0.2s, box-shadow 0.2s;
+            border-radius: 6px;
+            padding: 2px 4px;
+            transition: background-color .25s, box-shadow .25s;
+        }
+        .seg.on-def { background: rgba(47,111,228,.16); box-shadow: inset 0 -3px 0 var(--c-def); }
+        .seg.on-ind { background: rgba(13,148,103,.16); box-shadow: inset 0 -3px 0 var(--c-ind); }
+        .seg.on-rel { background: rgba(147,51,234,.14); box-shadow: inset 0 -3px 0 var(--c-rel); }
+
+        .enum { color: var(--muted); font-weight: 700; white-space: nowrap; }
+
+        .score {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--accent-deep);
         }
 
-        .seg.on-def { background-color: rgba(59,130,246,0.22); box-shadow: inset 0 -3px 0 var(--c-def); }
-        .seg.on-ind { background-color: rgba(16,185,129,0.22); box-shadow: inset 0 -3px 0 var(--c-ind); }
-        .seg.on-rel { background-color: rgba(168,85,247,0.22); box-shadow: inset 0 -3px 0 var(--c-rel); }
-
-        .enum {
-            color: var(--text-muted);
-            font-weight: 600;
+        .score-bar {
+            flex: 1;
+            height: 8px;
+            border-radius: 8px;
+            background: var(--accent-soft);
+            overflow: hidden;
+            border: 1px solid var(--accent-line);
+        }
+        .score-bar span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+            border-radius: 8px;
+            transition: width .4s ease;
         }
 
         .reveal-row {
@@ -280,286 +414,364 @@
             align-items: center;
             gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 12px;
+            margin: 4px 0 14px;
         }
 
-        .reveal-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
+        .reveal-label { font-size: .84rem; color: var(--muted); font-weight: 700; margin-right: 2px; }
 
         .reveal-btn {
+            min-height: 40px;
+            padding: 0 14px;
+            border-radius: 999px;
             border: 2px solid transparent;
             color: #fff;
-            padding: 5px 14px;
-            border-radius: 6px;
+            font: 700 .82rem var(--sans);
             cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            opacity: 0.55;
-            transition: all 0.2s;
+            opacity: .6;
+            transition: opacity .2s, transform .15s, box-shadow .2s;
         }
+        .reveal-btn.def { background: var(--c-def); }
+        .reveal-btn.ind { background: var(--c-ind); }
+        .reveal-btn.rel { background: var(--c-rel); }
+        .reveal-btn:hover { opacity: .85; }
+        .reveal-btn:active { transform: scale(.96); }
+        .reveal-btn.active { opacity: 1; box-shadow: 0 0 0 3px rgba(0,0,0,.12); }
 
-        .reveal-btn.def { background-color: var(--c-def); }
-        .reveal-btn.ind { background-color: var(--c-ind); }
-        .reveal-btn.rel { background-color: var(--c-rel); }
-
-        .reveal-btn:hover { opacity: 0.85; }
-        .reveal-btn.active { opacity: 1; border-color: rgba(0,0,0,0.25); }
-
-        .answer-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+        .answer-row { display: flex; gap: 8px; }
 
         .answer-input {
             flex: 1;
-            min-width: 140px;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.95rem;
+            min-width: 0;
+            min-height: 46px;
+            padding: 0 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            font: 500 1rem var(--sans);   /* 16px evita el zoom automático en iPhone */
+            color: var(--text);
+            background: #fff;
             outline: none;
+            transition: border-color .2s, box-shadow .2s;
         }
-
-        .answer-input:focus { border-color: var(--accent-color); }
+        .answer-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(243,173,97,.25); }
+        .answer-input:disabled { background: transparent; border-color: transparent; font-weight: 800; letter-spacing: .08em; color: #15803d; }
 
         .check-btn {
-            background-color: var(--accent-color);
-            color: #fff;
+            min-height: 46px;
+            padding: 0 20px;
             border: none;
-            padding: 8px 18px;
-            border-radius: 6px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #e5913d, var(--accent-deep));
+            color: #fff;
+            font: 700 .92rem var(--sans);
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background-color 0.2s;
+            transition: transform .15s, filter .2s;
         }
+        .check-btn:hover { filter: brightness(1.06); }
+        .check-btn:active { transform: scale(.97); }
+        .check-btn:disabled { display: none; }
 
-        .check-btn:hover { background-color: var(--accent-hover); }
-
-        .feedback {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            min-height: 1.2em;
-        }
-
+        .feedback { margin-top: 10px; font-size: .92rem; font-weight: 700; min-height: 1.3em; }
         .feedback.ok { color: #15803d; }
         .feedback.bad { color: #b91c1c; }
 
-        .clue-card.solved {
-            border-color: #86efac;
-            background-color: #f0fdf4;
+        .clue-card.solved { border-color: #86efac; background: #f0fdf4; }
+        .clue-card.solved .clue-badge { background: #dcfce7; border-color: #86efac; color: #15803d; }
+        .clue-card.shake { animation: shake .35s ease; }
+
+        @keyframes shake {
+            0%, 100% { transform: none; }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
         }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 12px;
-            }
-            .slide-container, .crossword-container {
-                padding: 20px;
-            }
+        /* Los crípticos usan una sola columna: la tarjeta ocupa todo el ancho */
+        .cryptic-card { display: block; }
+        .cryptic-card .clue-title { margin-bottom: 6px; }
+
+        /* ===== Navegación inferior (anterior / siguiente) ===== */
+        .pager {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 18px 0 32px;
+        }
+
+        .pager button {
+            min-height: 46px;
+            padding: 0 20px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            font: 700 .9rem var(--sans);
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(120,70,10,.05);
+            transition: transform .15s, border-color .2s, color .2s, opacity .2s;
+        }
+        .pager button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-deep); }
+        .pager button:active:not(:disabled) { transform: scale(.97); }
+        .pager button:disabled { opacity: .35; cursor: default; }
+
+        .pager-count { font-size: .85rem; color: var(--muted); font-weight: 600; }
+
+        :focus-visible { outline: 3px solid rgba(201,111,27,.55); outline-offset: 2px; }
+
+        @media (max-width: 420px) {
+            .clue-card { grid-template-columns: 1fr; padding: 14px; }
+            .clue-badge { grid-row: auto; width: 34px; height: 34px; margin-bottom: 4px; }
+            .answer-row { flex-direction: column; }
+            .check-btn { width: 100%; }
+            .reveal-row { gap: 6px; }
+            .reveal-label { width: 100%; }
+            .reveal-btn { flex: 1; padding: 0 8px; }
+            .pager button { padding: 0 16px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Procesos de interconexión global. Interconexión digital y soberanía digital de los Estados</h1>
-    </header>
-
-    <!-- Menú simplificado -->
-    <div class="nav-container">
-        <button class="nav-btn active" onclick="showSlide(0)">Parte 1</button>
-        <button class="nav-btn" onclick="showSlide(1)">Parte 2</button>
-        <button class="nav-btn" onclick="showSlide(2)">Parte 3</button>
-        <button class="nav-btn" onclick="showSlide(3)">Crucigrama</button>
-       
+    <div class="wrap">
+        <header>
+            <span class="eyebrow">Sociología</span>
+            <h1>Procesos de interconexión global. Interconexión digital y soberanía digital de los Estados</h1>
+        </header>
     </div>
 
-    <!-- Diapositiva 1 -->
-    <div class="slide-container active" id="slide-0">
-        <div class="slide-title">Procesos de interconexión global</div>
-        <div class="slide-text-box">
-            Hoy en día vivimos en un mundo que pasó de estar dividido en países aislados a funcionar como una sola red en tiempo real. Esto es lo que llamamos la "aldea global", donde las fronteras físicas ya no frenan la información ni las costumbres. Como resultado, compartimos modas y consumos masivos que forman una cultura global, transformando también nuestra identidad colectiva: ya no nos construimos solo con el entorno inmediato, sino a través de las pantallas.
-        </div>
-    </div>
-
-    <!-- Diapositiva 2 -->
-    <div class="slide-container" id="slide-1">
-        <div class="slide-title">Interconexión digital</div>
-        <div class="slide-text-box">
-            La tecnología nunca es neutra. Las redes sociales y los algoritmos funcionan hoy como una potente presión social sobre el individuo, tal como planteaba Durkheim con los hechos sociales, modificando nuestra conducta. A esto se le suma una realidad desigual: la brecha digital, que deja a quienes no tienen buen acceso a la tecnología completamente marginados del sistema.
+    <!-- Menú -->
+    <div class="nav-bar">
+        <div class="wrap">
+            <nav class="nav-container" id="nav" aria-label="Secciones">
+                <button class="nav-btn active" onclick="showSlide(0)">Parte 1</button>
+                <button class="nav-btn" onclick="showSlide(1)">Parte 2</button>
+                <button class="nav-btn" onclick="showSlide(2)">Parte 3</button>
+                <button class="nav-btn" onclick="showSlide(3)">Crucigrama</button>
+            
+            </nav>
         </div>
     </div>
 
-    <!-- Diapositiva 3 -->
-    <div class="slide-container" id="slide-2">
-        <div class="slide-title">Soberanía digital de los estados</div>
-        <div class="slide-text-box">
-            Mientras nuestras vidas y datos circulan por la red, surge un conflicto enorme con el poder de los países. La independencia tradicional se pone en duda cuando las plataformas y la información de los ciudadanos pertenecen a empresas multinacionales extranjeras, dejando a los Estados locales atados de manos frente a corporaciones que tienen más poder que los propios gobiernos.
-        </div>
-    </div>
+    <main class="wrap">
 
-    <!-- Sección Crucigrama (Sin revelar las palabras) -->
-    <div class="crossword-container" id="slide-3">
-        <h2>Crucigrama</h2>
-        <p class="intro">Completá el crucigrama con los conceptos trabajados en clase. Si necesitás ayuda, podés consultar las pistas.</p>
-
-        <div class="clue-card">
-            <div class="clue-title">Referencia 1</div>
-            <div class="clue-desc">Concepto que explica cómo el planeta funciona como una gran comunidad interconectada en tiempo real.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-1')">Pista</button>
+        <!-- Diapositiva 1 -->
+        <section class="panel active" id="slide-0">
+            <div class="slide-num">01</div>
+            <div class="slide-title">Procesos de interconexión global</div>
+            <div class="slide-text-box">
+                Hoy en día vivimos en un mundo que pasó de estar dividido en países aislados a funcionar como una sola red en tiempo real. Esto es lo que llamamos la "aldea global", donde las fronteras físicas ya no frenan la información ni las costumbres. Como resultado, compartimos modas y consumos masivos que forman una cultura global, transformando también nuestra identidad colectiva: ya no nos construimos solo con el entorno inmediato, sino a través de las pantallas.
             </div>
-            <div class="hint-text" id="hint-1">Ayuda: El mundo reducido a una vecindad conectada.</div>
-        </div>
+        </section>
 
-        <div class="clue-card">
-            <div class="clue-title">Referencia 2</div>
-            <div class="clue-desc">Conjunto masivo de valores, modas y tendencias que nos impacta a todos por igual, dejando atrás lo estrictamente local.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-2')">Pista</button>
+        <!-- Diapositiva 2 -->
+        <section class="panel" id="slide-1">
+            <div class="slide-num">02</div>
+            <div class="slide-title">Interconexión digital</div>
+            <div class="slide-text-box">
+                La tecnología nunca es neutra. Las redes sociales y los algoritmos funcionan hoy como una potente presión social sobre el individuo, tal como planteaba Durkheim con los hechos sociales, modificando nuestra conducta. A esto se le suma una realidad desigual: la brecha digital, que deja a quienes no tienen buen acceso a la tecnología completamente marginados del sistema.
             </div>
-            <div class="hint-text" id="hint-2">Ayuda: Son los consumos y tendencias que compartimos con gente de todo el mundo, más allá de nuestro barrio.</div>
-        </div>
+        </section>
 
-        <div class="clue-card">
-            <div class="clue-title">Referencia 3</div>
-            <div class="clue-desc">Forma en que nos sentimos parte de una comunidad, construida hoy en día a través de las pantallas.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-3')">Pista</button>
+        <!-- Diapositiva 3 -->
+        <section class="panel" id="slide-2">
+            <div class="slide-num">03</div>
+            <div class="slide-title">Soberanía digital de los estados</div>
+            <div class="slide-text-box">
+                Mientras nuestras vidas y datos circulan por la red, surge un conflicto enorme con el poder de los países. La independencia tradicional se pone en duda cuando las plataformas y la información de los ciudadanos pertenecen a empresas multinacionales extranjeras, dejando a los Estados locales atados de manos frente a corporaciones que tienen más poder que los propios gobiernos.
             </div>
-            <div class="hint-text" id="hint-3">Ayuda: La forma en que nos sentimos parte de un grupo o comunidad a través de las pantallas.</div>
-        </div>
+        </section>
 
-        <div class="clue-card">
-            <div class="clue-title">Referencia 4</div>
-            <div class="clue-desc">Formas de actuar, pensar y sentir exteriores al individuo que ejercen presión social, teorizadas por Émile Durkheim.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-4')">Pista</button>
-            </div>
-            <div class="hint-text" id="hint-4">Ayuda: Fuerzas invisibles que condicionan nuestra conducta según Durkheim.</div>
-        </div>
+        <!-- Sección Crucigrama (Sin revelar las palabras) -->
+        <section class="panel" id="slide-3">
+            <h2>Crucigrama</h2>
+            <p class="intro">Completá el crucigrama con los conceptos trabajados en clase. Si necesitás ayuda, podés consultar las pistas.</p>
 
-        <div class="clue-card">
-            <div class="clue-title">Referencia 5</div>
-            <div class="clue-desc">Desigualdad social generada en torno al acceso, velocidad y conocimientos tecnológicos.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-5')">Pista</button>
-            </div>
-            <div class="hint-text" id="hint-5">Ayuda: Distancia de desigualdad frente a la tecnología.</div>
-        </div>
-
-        <div class="clue-card">
-            <div class="clue-title">Referencia 6</div>
-            <div class="clue-desc">Poder y capacidad real de un Estado para decidir, regular y proteger su propio territorio digital y datos.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-6')">Pista</button>
-            </div>
-            <div class="hint-text" id="hint-6">Ayuda: Autonomía y control de un país sobre su territorio.</div>
-        </div>
-        
-        <div class="clue-card">
-            <div class="clue-title">Referencia 7</div>
-            <div class="clue-desc">Plataformas virtuales que funcionan hoy como los nuevos espacios de interacción y presión social.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-6')">Pista</button>
-            </div>
-            <div class="hint-text" id="hint-6">Ayuda: Espacios digitales donde interactuamos y consumimos contenido masivo.</div>
-        </div>
-        <div class="clue-card">
-            <div class="clue-title">Referencia 8</div>
-            <div class="clue-desc">Códigos informáticos que deciden qué vemos, consumimos y qué temas nos importan en las plataformas.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-6')">Pista</button>
-            </div>
-            <div class="hint-text" id="hint-6">Ayuda: Reglas matemáticas de las plataformas que deciden qué ves.</div>
-        </div>
-
-        <div class="clue-card">
-            <div class="clue-title">Referencia 9</div>
-            <div class="clue-desc">Institución política local que hoy se ve desafiada y limitada frente al poder de las corporaciones tecnológicas extranjeras.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-6')">Pista</button>
-            </div>
-            <div class="hint-text" id="hint-6">Ayuda: Autoridad soberana de un territorio frente al poder tecnológico global</div>
-        </div>
-
-        <div class="clue-card">
-            <div class="clue-title">Referencia 10</div>
-            <div class="clue-desc">Conjunto de herramientas y redes de interconexión cuya influencia digital condiciona nuestra vida cotidiana.</div>
-            <div class="clue-actions">
-                <button class="hint-btn" onclick="toggleHint('hint-6')">Pista</button>
-            </div>
-            <div class="hint-text" id="hint-6">Ayuda: Herramienta de interconexión que moldea nuestra vida diaria.</div>
-        </div>
-        
-    </div>
-
-    <!-- Sección Crípticos -->
-    <div class="crossword-container" id="slide-4">
-        <h2>Crípticos</h2>
-        <p class="cryptic-invite">¿Querés un desafío? Te invitamos a intentar nuestros crípticos. Si te pareció muy fácil el crucigrama, este juego es para vos:</p>
-
-        <div class="cryptic-explain">
-            <h3>¿Qué es un críptico?</h3>
-            <p>Si no sabés qué es un críptico, te lo explicamos a continuación. Un críptico es una pista de crucigrama con doble personalidad: la frase parece una oración común y corriente, pero en realidad esconde <strong>dos formas distintas de llegar a la misma respuesta</strong>. Además, al final de la frase siempre aparece un número entre paréntesis, que indica la cantidad de letras de la palabra que hay que encontrar.</p>
-            <p>Toda pista críptica tiene tres partes principales:</p>
-            <ul>
-                <li><span class="tag def">Definición</span> Es un sinónimo directo de la respuesta, como en un crucigrama normal. Casi siempre está <strong>al principio o al final</strong> de la frase.</li>
-                <li><span class="tag rel">Relleno</span> Es el material con el que se arma la palabra: las letras o palabras de la frase que hay que manipular (reordenar, buscar escondidas, dar vuelta, juntar) para formar la solución.</li>
-                <li><span class="tag ind">Indicador</span> Es la palabra clave que te avisa qué truco hay que hacer con el relleno. Por ejemplo, "desordenado" o "mezclado" avisan que hay que reordenar las letras (anagrama), "oculto en" avisa que la respuesta está escondida dentro de otras palabras, y "vuelve" o "al revés" avisan que hay que leer la palabra de atrás para adelante.</li>
-            </ul>
-            <p>Un ejemplo que no está en el juego:</p>
-            <div class="cryptic-example">
-                <div class="cryptic-phrase">
-                    <span class="seg on-def">Sentimiento</span>:
-                    <span class="seg on-rel">Roma</span>
-                    <span class="seg on-ind">desordenada</span>
-                    <span class="enum">(4)</span>
+            <div class="clue-card">
+                <div class="clue-badge">1</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 1</div>
+                    <div class="clue-desc">Concepto que explica cómo el planeta funciona como una gran comunidad interconectada en tiempo real.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: El mundo reducido a una vecindad conectada.</div>
                 </div>
-                La <span class="tag def">definición</span> es "Sentimiento", el <span class="tag rel">relleno</span> es "Roma" y el <span class="tag ind">indicador</span> es "desordenada", que nos dice que mezclemos las letras. Si reordenamos R-O-M-A, obtenemos <strong>AMOR</strong>.
             </div>
-        </div>
 
-        <div id="cryptic-list"></div>
-    </div>
+            <div class="clue-card">
+                <div class="clue-badge">2</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 2</div>
+                    <div class="clue-desc">Conjunto masivo de valores, modas y tendencias que nos impacta a todos por igual, dejando atrás lo estrictamente local.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Son los consumos y tendencias que compartimos con gente de todo el mundo, más allá de nuestro barrio.</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">3</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 3</div>
+                    <div class="clue-desc">Forma en que nos sentimos parte de una comunidad, construida hoy en día a través de las pantallas.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: La forma en que nos sentimos parte de un grupo o comunidad a través de las pantallas.</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">4</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 4</div>
+                    <div class="clue-desc">Formas de actuar, pensar y sentir exteriores al individuo que ejercen presión social, teorizadas por Émile Durkheim.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Fuerzas invisibles que condicionan nuestra conducta según Durkheim.</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">5</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 5</div>
+                    <div class="clue-desc">Desigualdad social generada en torno al acceso, velocidad y conocimientos tecnológicos.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Distancia de desigualdad frente a la tecnología.</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">6</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 6</div>
+                    <div class="clue-desc">Poder y capacidad real de un Estado para decidir, regular y proteger su propio territorio digital y datos.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Autonomía y control de un país sobre su territorio.</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">7</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 7</div>
+                    <div class="clue-desc">Plataformas virtuales que funcionan hoy como los nuevos espacios de interacción y presión social.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Espacios digitales donde interactuamos y consumimos contenido masivo.</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">8</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 8</div>
+                    <div class="clue-desc">Códigos informáticos que deciden qué vemos, consumimos y qué temas nos importan en las plataformas.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Reglas matemáticas de las plataformas que deciden qué ves.</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">9</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 9</div>
+                    <div class="clue-desc">Institución política local que hoy se ve desafiada y limitada frente al poder de las corporaciones tecnológicas extranjeras.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Autoridad soberana de un territorio frente al poder tecnológico global</div>
+                </div>
+            </div>
+
+            <div class="clue-card">
+                <div class="clue-badge">10</div>
+                <div class="clue-body">
+                    <div class="clue-title">Palabra 10</div>
+                    <div class="clue-desc">Conjunto de herramientas y redes de interconexión cuya influencia digital condiciona nuestra vida cotidiana.</div>
+                    <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
+                    <div class="hint-text">Ayuda: Herramienta de interconexión que moldea nuestra vida diaria.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Crípticos -->
+        <section class="panel" id="slide-4">
+            <h2>Crípticos</h2>
+            <p class="cryptic-invite">¿Querés un desafío? Te invitamos a intentar nuestros crípticos. Si te pareció muy fácil el crucigrama, este juego es para vos:</p>
+
+            <div class="cryptic-explain">
+                <h3>¿Qué es un críptico?</h3>
+                <p>Si no sabés qué es un críptico, te lo explicamos a continuación. Un críptico es una pista de crucigrama con doble personalidad: la frase parece una oración común y corriente, pero en realidad esconde <strong>dos formas distintas de llegar a la misma respuesta</strong>. Además, al final de la frase siempre aparece un número entre paréntesis, que indica la cantidad de letras de la palabra que hay que encontrar.</p>
+                <p>Toda pista críptica tiene tres partes principales:</p>
+                <ul>
+                    <li><span class="tag def">Definición</span><br>Es un sinónimo directo de la respuesta, como en un crucigrama normal. Casi siempre está <strong>al principio o al final</strong> de la frase.</li>
+                    <li><span class="tag rel">Relleno</span><br>Es el material con el que se arma la palabra: las letras o palabras de la frase que hay que manipular (reordenar, buscar escondidas, dar vuelta, juntar) para formar la solución.</li>
+                    <li><span class="tag ind">Indicador</span><br>Es la palabra clave que te avisa qué truco hay que hacer con el relleno. Por ejemplo, "desordenado" o "mezclado" avisan que hay que reordenar las letras (anagrama), "oculto en" avisa que la respuesta está escondida dentro de otras palabras, y "vuelve" o "al revés" avisan que hay que leer la palabra de atrás para adelante.</li>
+                </ul>
+                <p>Un ejemplo que no está en el juego:</p>
+                <div class="cryptic-example">
+                    <div class="cryptic-phrase">
+                        <span class="seg on-def">Sentimiento</span>:
+                        <span class="seg on-rel">Roma</span>
+                        <span class="seg on-ind">desordenada</span>
+                        <span class="enum">(4)</span>
+                    </div>
+                    La <span class="tag def">definición</span> es "Sentimiento", el <span class="tag rel">relleno</span> es "Roma" y el <span class="tag ind">indicador</span> es "desordenada", que nos dice que mezclemos las letras. Si reordenamos R-O-M-A, obtenemos <strong>AMOR</strong>.
+                </div>
+            </div>
+
+            <div class="score" aria-live="polite">
+                <span id="score-text">Resueltos: 0 / 0</span>
+                <div class="score-bar"><span id="score-fill"></span></div>
+            </div>
+
+            <div id="cryptic-list"></div>
+        </section>
+
+        <!-- Anterior / siguiente -->
+        <div class="pager">
+            <button id="prev" onclick="step(-1)">← Anterior</button>
+            <span class="pager-count" id="pager-count">1 / 4</span>
+            <button id="next" onclick="step(1)">Siguiente →</button>
+        </div>
+    </main>
 
     <script>
+        const panels  = document.querySelectorAll('.panel');
+        const buttons = document.querySelectorAll('.nav-btn');
+        const nav     = document.getElementById('nav');
+        let current = 0;
+
         function showSlide(index) {
-            const slides = document.querySelectorAll('.slide-container, .crossword-container');
-            const buttons = document.querySelectorAll('.nav-btn');
+            current = index;
 
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
-            });
+            panels.forEach((p, i) => p.classList.toggle('active', i === index));
+            buttons.forEach((b, i) => b.classList.toggle('active', i === index));
 
-            buttons.forEach((btn, i) => {
-                if (i === index) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+            document.getElementById('prev').disabled = index === 0;
+            document.getElementById('next').disabled = index === panels.length - 1;
+            document.getElementById('pager-count').textContent = (index + 1) + ' / ' + panels.length;
+
+            // Centra el botón activo en el menú (útil en celulares)
+            const b = buttons[index];
+            nav.scrollTo({ left: b.offsetLeft - (nav.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function toggleHint(id) {
-            const hint = document.getElementById(id);
-            if (hint.style.display === 'block') {
-                hint.style.display = 'none';
-            } else {
-                hint.style.display = 'block';
-            }
+        function step(delta) {
+            const next = current + delta;
+            if (next >= 0 && next < panels.length) showSlide(next);
+        }
+
+        // Flechas del teclado para pasar de sección al presentar
+        document.addEventListener('keydown', e => {
+            const t = e.target.tagName;
+            if (t === 'INPUT' || t === 'TEXTAREA') return;
+            if (e.key === 'ArrowRight') step(1);
+            if (e.key === 'ArrowLeft') step(-1);
+        });
+
+        function toggleHint(btn) {
+            const hint = btn.parentElement.querySelector('.hint-text');
+            const open = hint.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open);
         }
 
         /* ===== Crípticos ===== */
@@ -622,6 +834,7 @@
         ];
 
         const nombresTipo = { def: "Definición", ind: "Indicador", rel: "Relleno" };
+        let resueltos = 0;
 
         function normalizar(texto) {
             return texto
@@ -631,12 +844,17 @@
                 .replace(/[^a-z]/g, "");
         }
 
+        function actualizarPuntaje() {
+            document.getElementById("score-text").textContent = "Resueltos: " + resueltos + " / " + crypticos.length;
+            document.getElementById("score-fill").style.width = (resueltos / crypticos.length * 100) + "%";
+        }
+
         function construirCrypticos() {
             const lista = document.getElementById("cryptic-list");
 
             crypticos.forEach((c, i) => {
                 const card = document.createElement("div");
-                card.className = "clue-card";
+                card.className = "clue-card cryptic-card";
 
                 const titulo = document.createElement("div");
                 titulo.className = "clue-title";
@@ -692,6 +910,9 @@
                 input.className = "answer-input";
                 input.placeholder = "Escribí tu respuesta...";
                 input.autocomplete = "off";
+                input.autocapitalize = "off";
+                input.spellcheck = false;
+                input.setAttribute("aria-label", "Respuesta del críptico " + (i + 1));
 
                 const boton = document.createElement("button");
                 boton.className = "check-btn";
@@ -711,9 +932,14 @@
                         input.value = correcta;
                         input.disabled = true;
                         boton.disabled = true;
+                        resueltos++;
+                        actualizarPuntaje();
                     } else {
                         feedback.className = "feedback bad";
                         feedback.textContent = "Todavía no, ¡seguí intentando!";
+                        card.classList.remove("shake");
+                        void card.offsetWidth;
+                        card.classList.add("shake");
                     }
                 };
 
@@ -729,9 +955,12 @@
 
                 lista.appendChild(card);
             });
+
+            actualizarPuntaje();
         }
 
         construirCrypticos();
+        showSlide(0);
     </script>
 </body>
 </html>
