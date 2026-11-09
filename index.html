@@ -310,184 +310,6 @@
 
         .hint-text.open { display: block; }
 
-        /* ===== Crípticos ===== */
-        .cryptic-invite {
-            font-size: 1.08rem;
-            margin-bottom: 20px;
-        }
-
-        .cryptic-explain {
-            background: linear-gradient(180deg, #fff6e8, #fffaf2);
-            border: 1px solid var(--accent-line);
-            border-radius: 16px;
-            padding: clamp(16px, 4vw, 24px);
-            margin-bottom: 24px;
-            font-size: .97rem;
-            line-height: 1.7;
-        }
-
-        .cryptic-explain h3 {
-            font-family: var(--serif);
-            font-size: 1.15rem;
-            color: var(--accent-deep);
-            margin-bottom: 10px;
-        }
-
-        .cryptic-explain p { margin-bottom: 12px; }
-
-        .cryptic-explain ul { list-style: none; margin: 14px 0; display: grid; gap: 10px; }
-
-        .cryptic-explain li {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px 14px;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 2px 11px;
-            margin-bottom: 4px;
-            border-radius: 999px;
-            color: #fff;
-            font-weight: 700;
-            font-size: .82rem;
-        }
-        .tag.def { background: var(--c-def); }
-        .tag.ind { background: var(--c-ind); }
-        .tag.rel { background: var(--c-rel); }
-
-        .cryptic-example {
-            background: #fff;
-            border: 1.5px dashed var(--accent-line);
-            border-radius: 12px;
-            padding: 14px;
-            margin-top: 10px;
-        }
-
-        .cryptic-phrase {
-            font-size: 1.1rem;
-            line-height: 2.1;
-            margin-bottom: 12px;
-        }
-
-        .seg {
-            border-radius: 6px;
-            padding: 2px 4px;
-            transition: background-color .25s, box-shadow .25s;
-        }
-        .seg.on-def { background: rgba(47,111,228,.16); box-shadow: inset 0 -3px 0 var(--c-def); }
-        .seg.on-ind { background: rgba(13,148,103,.16); box-shadow: inset 0 -3px 0 var(--c-ind); }
-        .seg.on-rel { background: rgba(147,51,234,.14); box-shadow: inset 0 -3px 0 var(--c-rel); }
-
-        .enum { color: var(--muted); font-weight: 700; white-space: nowrap; }
-
-        .score {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 14px;
-            font-size: .9rem;
-            font-weight: 700;
-            color: var(--accent-deep);
-        }
-
-        .score-bar {
-            flex: 1;
-            height: 8px;
-            border-radius: 8px;
-            background: var(--accent-soft);
-            overflow: hidden;
-            border: 1px solid var(--accent-line);
-        }
-        .score-bar span {
-            display: block;
-            height: 100%;
-            width: 0;
-            background: linear-gradient(90deg, var(--accent), var(--accent-deep));
-            border-radius: 8px;
-            transition: width .4s ease;
-        }
-
-        .reveal-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin: 4px 0 14px;
-        }
-
-        .reveal-label { font-size: .84rem; color: var(--muted); font-weight: 700; margin-right: 2px; }
-
-        .reveal-btn {
-            min-height: 40px;
-            padding: 0 14px;
-            border-radius: 999px;
-            border: 2px solid transparent;
-            color: #fff;
-            font: 700 .82rem var(--sans);
-            cursor: pointer;
-            opacity: .6;
-            transition: opacity .2s, transform .15s, box-shadow .2s;
-        }
-        .reveal-btn.def { background: var(--c-def); }
-        .reveal-btn.ind { background: var(--c-ind); }
-        .reveal-btn.rel { background: var(--c-rel); }
-        .reveal-btn:hover { opacity: .85; }
-        .reveal-btn:active { transform: scale(.96); }
-        .reveal-btn.active { opacity: 1; box-shadow: 0 0 0 3px rgba(0,0,0,.12); }
-
-        .answer-row { display: flex; gap: 8px; }
-
-        .answer-input {
-            flex: 1;
-            min-width: 0;
-            min-height: 46px;
-            padding: 0 14px;
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            font: 500 1rem var(--sans);   /* 16px evita el zoom automático en iPhone */
-            color: var(--text);
-            background: #fff;
-            outline: none;
-            transition: border-color .2s, box-shadow .2s;
-        }
-        .answer-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(243,173,97,.25); }
-        .answer-input:disabled { background: transparent; border-color: transparent; font-weight: 800; letter-spacing: .08em; color: #15803d; }
-
-        .check-btn {
-            min-height: 46px;
-            padding: 0 20px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #e5913d, var(--accent-deep));
-            color: #fff;
-            font: 700 .92rem var(--sans);
-            cursor: pointer;
-            transition: transform .15s, filter .2s;
-        }
-        .check-btn:hover { filter: brightness(1.06); }
-        .check-btn:active { transform: scale(.97); }
-        .check-btn:disabled { display: none; }
-
-        .feedback { margin-top: 10px; font-size: .92rem; font-weight: 700; min-height: 1.3em; }
-        .feedback.ok { color: #15803d; }
-        .feedback.bad { color: #b91c1c; }
-
-        .clue-card.solved { border-color: #86efac; background: #f0fdf4; }
-        .clue-card.solved .clue-badge { background: #dcfce7; border-color: #86efac; color: #15803d; }
-        .clue-card.shake { animation: shake .35s ease; }
-
-        @keyframes shake {
-            0%, 100% { transform: none; }
-            25% { transform: translateX(-6px); }
-            75% { transform: translateX(6px); }
-        }
-
-        /* Los crípticos usan una sola columna: la tarjeta ocupa todo el ancho */
-        .cryptic-card { display: block; }
-        .cryptic-card .clue-title { margin-bottom: 6px; }
-
         /* ===== Navegación inferior (anterior / siguiente) ===== */
         .pager {
             display: flex;
@@ -520,11 +342,6 @@
         @media (max-width: 420px) {
             .clue-card { grid-template-columns: 1fr; padding: 14px; }
             .clue-badge { grid-row: auto; width: 34px; height: 34px; margin-bottom: 4px; }
-            .answer-row { flex-direction: column; }
-            .check-btn { width: 100%; }
-            .reveal-row { gap: 6px; }
-            .reveal-label { width: 100%; }
-            .reveal-btn { flex: 1; padding: 0 8px; }
             .pager button { padding: 0 16px; }
         }
 
@@ -550,7 +367,6 @@
                 <button class="nav-btn" onclick="showSlide(1)">Parte 2</button>
                 <button class="nav-btn" onclick="showSlide(2)">Parte 3</button>
                 <button class="nav-btn" onclick="showSlide(3)">Crucigrama</button>
-            
             </nav>
         </div>
     </div>
@@ -592,7 +408,7 @@
             <div class="clue-card">
                 <div class="clue-badge">1</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 1</div>
+                    <div class="clue-title">Referencia 1</div>
                     <div class="clue-desc">Concepto que explica cómo el planeta funciona como una gran comunidad interconectada en tiempo real.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: El mundo reducido a una vecindad conectada.</div>
@@ -602,7 +418,7 @@
             <div class="clue-card">
                 <div class="clue-badge">2</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 2</div>
+                    <div class="clue-title">Referencia 2</div>
                     <div class="clue-desc">Conjunto masivo de valores, modas y tendencias que nos impacta a todos por igual, dejando atrás lo estrictamente local.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Son los consumos y tendencias que compartimos con gente de todo el mundo, más allá de nuestro barrio.</div>
@@ -612,7 +428,7 @@
             <div class="clue-card">
                 <div class="clue-badge">3</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 3</div>
+                    <div class="clue-title">Referencia 3</div>
                     <div class="clue-desc">Forma en que nos sentimos parte de una comunidad, construida hoy en día a través de las pantallas.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: La forma en que nos sentimos parte de un grupo o comunidad a través de las pantallas.</div>
@@ -622,7 +438,7 @@
             <div class="clue-card">
                 <div class="clue-badge">4</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 4</div>
+                    <div class="clue-title">Referencia 4</div>
                     <div class="clue-desc">Formas de actuar, pensar y sentir exteriores al individuo que ejercen presión social, teorizadas por Émile Durkheim.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Fuerzas invisibles que condicionan nuestra conducta según Durkheim.</div>
@@ -632,7 +448,7 @@
             <div class="clue-card">
                 <div class="clue-badge">5</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 5</div>
+                    <div class="clue-title">Referencia 5</div>
                     <div class="clue-desc">Desigualdad social generada en torno al acceso, velocidad y conocimientos tecnológicos.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Distancia de desigualdad frente a la tecnología.</div>
@@ -642,7 +458,7 @@
             <div class="clue-card">
                 <div class="clue-badge">6</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 6</div>
+                    <div class="clue-title">Referencia 6</div>
                     <div class="clue-desc">Poder y capacidad real de un Estado para decidir, regular y proteger su propio territorio digital y datos.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Autonomía y control de un país sobre su territorio.</div>
@@ -652,7 +468,7 @@
             <div class="clue-card">
                 <div class="clue-badge">7</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 7</div>
+                    <div class="clue-title">Referencia 7</div>
                     <div class="clue-desc">Plataformas virtuales que funcionan hoy como los nuevos espacios de interacción y presión social.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Espacios digitales donde interactuamos y consumimos contenido masivo.</div>
@@ -662,7 +478,7 @@
             <div class="clue-card">
                 <div class="clue-badge">8</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 8</div>
+                    <div class="clue-title">Referencia 8</div>
                     <div class="clue-desc">Códigos informáticos que deciden qué vemos, consumimos y qué temas nos importan en las plataformas.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Reglas matemáticas de las plataformas que deciden qué ves.</div>
@@ -672,7 +488,7 @@
             <div class="clue-card">
                 <div class="clue-badge">9</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 9</div>
+                    <div class="clue-title">Referencia 9</div>
                     <div class="clue-desc">Institución política local que hoy se ve desafiada y limitada frente al poder de las corporaciones tecnológicas extranjeras.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Autoridad soberana de un territorio frente al poder tecnológico global</div>
@@ -682,46 +498,12 @@
             <div class="clue-card">
                 <div class="clue-badge">10</div>
                 <div class="clue-body">
-                    <div class="clue-title">Palabra 10</div>
+                    <div class="clue-title">Referencia 10</div>
                     <div class="clue-desc">Conjunto de herramientas y redes de interconexión cuya influencia digital condiciona nuestra vida cotidiana.</div>
                     <button class="hint-btn" aria-expanded="false" onclick="toggleHint(this)">Pista</button>
                     <div class="hint-text">Ayuda: Herramienta de interconexión que moldea nuestra vida diaria.</div>
                 </div>
             </div>
-        </section>
-
-        <!-- Sección Crípticos -->
-        <section class="panel" id="slide-4">
-            <h2>Crípticos</h2>
-            <p class="cryptic-invite">¿Querés un desafío? Te invitamos a intentar nuestros crípticos. Si te pareció muy fácil el crucigrama, este juego es para vos:</p>
-
-            <div class="cryptic-explain">
-                <h3>¿Qué es un críptico?</h3>
-                <p>Si no sabés qué es un críptico, te lo explicamos a continuación. Un críptico es una pista de crucigrama con doble personalidad: la frase parece una oración común y corriente, pero en realidad esconde <strong>dos formas distintas de llegar a la misma respuesta</strong>. Además, al final de la frase siempre aparece un número entre paréntesis, que indica la cantidad de letras de la palabra que hay que encontrar.</p>
-                <p>Toda pista críptica tiene tres partes principales:</p>
-                <ul>
-                    <li><span class="tag def">Definición</span><br>Es un sinónimo directo de la respuesta, como en un crucigrama normal. Casi siempre está <strong>al principio o al final</strong> de la frase.</li>
-                    <li><span class="tag rel">Relleno</span><br>Es el material con el que se arma la palabra: las letras o palabras de la frase que hay que manipular (reordenar, buscar escondidas, dar vuelta, juntar) para formar la solución.</li>
-                    <li><span class="tag ind">Indicador</span><br>Es la palabra clave que te avisa qué truco hay que hacer con el relleno. Por ejemplo, "desordenado" o "mezclado" avisan que hay que reordenar las letras (anagrama), "oculto en" avisa que la respuesta está escondida dentro de otras palabras, y "vuelve" o "al revés" avisan que hay que leer la palabra de atrás para adelante.</li>
-                </ul>
-                <p>Un ejemplo que no está en el juego:</p>
-                <div class="cryptic-example">
-                    <div class="cryptic-phrase">
-                        <span class="seg on-def">Sentimiento</span>:
-                        <span class="seg on-rel">Roma</span>
-                        <span class="seg on-ind">desordenada</span>
-                        <span class="enum">(4)</span>
-                    </div>
-                    La <span class="tag def">definición</span> es "Sentimiento", el <span class="tag rel">relleno</span> es "Roma" y el <span class="tag ind">indicador</span> es "desordenada", que nos dice que mezclemos las letras. Si reordenamos R-O-M-A, obtenemos <strong>AMOR</strong>.
-                </div>
-            </div>
-
-            <div class="score" aria-live="polite">
-                <span id="score-text">Resueltos: 0 / 0</span>
-                <div class="score-bar"><span id="score-fill"></span></div>
-            </div>
-
-            <div id="cryptic-list"></div>
         </section>
 
         <!-- Anterior / siguiente -->
@@ -774,192 +556,6 @@
             btn.setAttribute('aria-expanded', open);
         }
 
-        /* ===== Crípticos ===== */
-
-        // Tipos de segmento: "def" = definición, "ind" = indicador, "rel" = relleno, "" = sin marcar.
-        // Las respuestas están codificadas (base64) para que no se vean a simple vista en el código.
-        const crypticos = [
-            {
-                enumeracion: "5",
-                respuesta: "QUxERUE=",
-                frase: [
-                    ["Pueblo pequeño", "def"], [" que ", ""],
-                    ["se esconde en", "ind"], [" «cual deambulaba»", "rel"]
-                ]
-            },
-            {
-                enumeracion: "6",
-                respuesta: "RVNUQURP",
-                frase: [
-                    ["Nación", "def"], [" que ", ""],
-                    ["dotase", "rel"], [" ", ""],
-                    ["de modo desordenado", "ind"]
-                ]
-            },
-            {
-                enumeracion: "6",
-                respuesta: "QlJFQ0hB",
-                frase: [
-                    ["Abertura", "def"], [" ", ""],
-                    ["oculta en", "ind"], [" hombre chantajista", "rel"]
-                ]
-            },
-            {
-                enumeracion: "7",
-                respuesta: "Q1VMVFVSQQ==",
-                frase: [
-                    ["Conocimientos de un pueblo", "def"], [", ", ""],
-                    ["ocultos en", "ind"], [" escultura", "rel"]
-                ]
-            },
-            {
-                enumeracion: "5",
-                respuesta: "REFUT1M=",
-                frase: [
-                    ["Información", "def"], [" de ", ""],
-                    ["todas", "rel"], [", ", ""],
-                    ["en desorden", "ind"]
-                ]
-            },
-            {
-                enumeracion: "9",
-                respuesta: "QUxHT1JJVE1P",
-                frase: [
-                    ["Pasos para resolver", "def"], [": ", ""],
-                    ["un poco", "rel"], [" ", ""],
-                    ["seguido de", "ind"], [" ", ""],
-                    ["cadencia", "rel"]
-                ]
-            }
-        ];
-
-        const nombresTipo = { def: "Definición", ind: "Indicador", rel: "Relleno" };
-        let resueltos = 0;
-
-        function normalizar(texto) {
-            return texto
-                .normalize("NFD")
-                .replace(/[̀-ͯ]/g, "")
-                .toLowerCase()
-                .replace(/[^a-z]/g, "");
-        }
-
-        function actualizarPuntaje() {
-            document.getElementById("score-text").textContent = "Resueltos: " + resueltos + " / " + crypticos.length;
-            document.getElementById("score-fill").style.width = (resueltos / crypticos.length * 100) + "%";
-        }
-
-        function construirCrypticos() {
-            const lista = document.getElementById("cryptic-list");
-
-            crypticos.forEach((c, i) => {
-                const card = document.createElement("div");
-                card.className = "clue-card cryptic-card";
-
-                const titulo = document.createElement("div");
-                titulo.className = "clue-title";
-                titulo.textContent = "Críptico " + (i + 1);
-                card.appendChild(titulo);
-
-                // Frase con sus partes
-                const frase = document.createElement("div");
-                frase.className = "cryptic-phrase";
-                c.frase.forEach(([texto, tipo]) => {
-                    const span = document.createElement("span");
-                    span.textContent = texto;
-                    if (tipo) {
-                        span.className = "seg";
-                        span.dataset.tipo = tipo;
-                    }
-                    frase.appendChild(span);
-                });
-                const enumSpan = document.createElement("span");
-                enumSpan.className = "enum";
-                enumSpan.textContent = " (" + c.enumeracion + ")";
-                frase.appendChild(enumSpan);
-                card.appendChild(frase);
-
-                // Botones de revelar
-                const fila = document.createElement("div");
-                fila.className = "reveal-row";
-                const etiqueta = document.createElement("span");
-                etiqueta.className = "reveal-label";
-                etiqueta.textContent = "Revelar:";
-                fila.appendChild(etiqueta);
-
-                ["ind", "rel", "def"].forEach(tipo => {
-                    const btn = document.createElement("button");
-                    btn.className = "reveal-btn " + tipo;
-                    btn.textContent = nombresTipo[tipo];
-                    btn.onclick = () => {
-                        const activo = btn.classList.toggle("active");
-                        frase.querySelectorAll('.seg[data-tipo="' + tipo + '"]').forEach(seg => {
-                            seg.classList.toggle("on-" + tipo, activo);
-                        });
-                    };
-                    fila.appendChild(btn);
-                });
-                card.appendChild(fila);
-
-                // Respuesta
-                const filaRespuesta = document.createElement("div");
-                filaRespuesta.className = "answer-row";
-
-                const input = document.createElement("input");
-                input.type = "text";
-                input.className = "answer-input";
-                input.placeholder = "Escribí tu respuesta...";
-                input.autocomplete = "off";
-                input.autocapitalize = "off";
-                input.spellcheck = false;
-                input.setAttribute("aria-label", "Respuesta del críptico " + (i + 1));
-
-                const boton = document.createElement("button");
-                boton.className = "check-btn";
-                boton.textContent = "Comprobar";
-
-                const feedback = document.createElement("div");
-                feedback.className = "feedback";
-
-                const comprobar = () => {
-                    const intento = normalizar(input.value);
-                    if (!intento) return;
-                    const correcta = atob(c.respuesta);
-                    if (intento === normalizar(correcta)) {
-                        feedback.className = "feedback ok";
-                        feedback.textContent = "¡Correcto! La palabra era " + correcta + ".";
-                        card.classList.add("solved");
-                        input.value = correcta;
-                        input.disabled = true;
-                        boton.disabled = true;
-                        resueltos++;
-                        actualizarPuntaje();
-                    } else {
-                        feedback.className = "feedback bad";
-                        feedback.textContent = "Todavía no, ¡seguí intentando!";
-                        card.classList.remove("shake");
-                        void card.offsetWidth;
-                        card.classList.add("shake");
-                    }
-                };
-
-                boton.onclick = comprobar;
-                input.addEventListener("keydown", e => {
-                    if (e.key === "Enter") comprobar();
-                });
-
-                filaRespuesta.appendChild(input);
-                filaRespuesta.appendChild(boton);
-                card.appendChild(filaRespuesta);
-                card.appendChild(feedback);
-
-                lista.appendChild(card);
-            });
-
-            actualizarPuntaje();
-        }
-
-        construirCrypticos();
         showSlide(0);
     </script>
 </body>
